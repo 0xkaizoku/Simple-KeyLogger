@@ -1,6 +1,6 @@
 let loggingEnabled = false;
 
-        let logDiv = document.getElementById('log');
+        let log = document.getElementById('log'); 
         let stateDiv = document.getElementById('state');
         let startBtn = document.getElementById("start");
         let stopBtn = document.getElementById("stop");
@@ -17,7 +17,7 @@ let loggingEnabled = false;
         stopBtn.addEventListener("click", () => {
             document.removeEventListener("keydown", handleDown);
             document.removeEventListener("keyup", handleUp);
-            logDiv.textContent = "";
+            log.textContent = "";
             stateDiv.textContent = "Keylogging Disabled";
             stopBtn.disabled = true;
             startBtn.disabled = false;
@@ -26,14 +26,14 @@ let loggingEnabled = false;
 
         function handleDown(e) {
             if (loggingEnabled) {
-                logDiv.textContent = `Key "${e.key}" is pressed down`;
+                log.textContent = `Key "${e.key}" is pressed down`;
                 stateDiv.textContent = "Key is Down";
             }
         }
 
         function handleUp(e) {
             if (loggingEnabled) {
-                logDiv.textContent = `Key "${e.key}" is released`;
+                log.textContent = `Key "${e.key}" is released`;
                 stateDiv.textContent = "Key is Up";
             }
         }
