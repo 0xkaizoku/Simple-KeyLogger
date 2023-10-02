@@ -1,39 +1,41 @@
 let loggingEnabled = false;
 
-        let log = document.getElementById('log'); 
-        let stateDiv = document.getElementById('state');
-        let startBtn = document.getElementById("start");
-        let stopBtn = document.getElementById("stop");
+let keylogDiv = document.getElementById('keylogDiv'); 
+let stateDiv = document.getElementById('stateDiv'); 
+let startBtn = document.getElementById("start");
+let stopBtn = document.getElementById("stop");
 
-        startBtn.addEventListener("click", () => {
-            document.addEventListener("keydown", handleDown);
-            document.addEventListener("keyup", handleUp);
-            startBtn.disabled = true;
-            stopBtn.disabled = false;
-            loggingEnabled = true;
-            stateDiv.textContent = "Keylogging Enabled";
-        });
+startBtn.addEventListener("click", () => {
+    document.addEventListener("keydown", handleDown);
+    document.addEventListener("keyup", handleUp);
+    loggingEnabled = true;
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+  
+    stateDiv.textContent = "Keylogging Enabled";
+});
 
-        stopBtn.addEventListener("click", () => {
-            document.removeEventListener("keydown", handleDown);
-            document.removeEventListener("keyup", handleUp);
-            log.textContent = "";
-            stateDiv.textContent = "Keylogging Disabled";
-            stopBtn.disabled = true;
-            startBtn.disabled = false;
-            loggingEnabled = false;
-        });
+stopBtn.addEventListener("click", () => {
+    document.removeEventListener("keydown", handleDown);
+    document.removeEventListener("keyup", handleUp);
+    keylogDiv.textContent = ""; 
+    stateDiv.textContent = "Keylogging Disabled";
+    loggingEnabled = false;
+    stopBtn.disabled = true;
+    startBtn.disabled = false;
+   
+});
 
-        function handleDown(e) {
-            if (loggingEnabled) {
-                log.textContent = `Key "${e.key}" is pressed down`;
-                stateDiv.textContent = "Key is Down";
-            }
-        }
+function handleDown(e) {
+    if (loggingEnabled) {
+        keylogDiv.textContent = `Key "${e.key}" is pressed down`;
+        stateDiv.textContent = "Key is Down";
+    }
+}
 
-        function handleUp(e) {
-            if (loggingEnabled) {
-                log.textContent = `Key "${e.key}" is released`;
-                stateDiv.textContent = "Key is Up";
-            }
-        }
+function handleUp(e) {
+    if (loggingEnabled) {
+        keylogDiv.textContent = `Key "${e.key}" is released`; 
+        stateDiv.textContent = "Key is Up";
+    }
+}
